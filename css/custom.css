@@ -19,6 +19,11 @@ body{
   background-repeat: repeat-x;
 }
 
+.lt-ie9 .fundo_footer{
+  background-image: url("../img/footer_azul.png");
+  background-repeat: repeat-x;
+}
+
 .fundo_cidade {
   background: url("../img/fundo_cidade.gif") center no-repeat;
 }
