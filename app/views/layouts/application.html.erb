@@ -25,6 +25,12 @@
 	</head>
 
 	<body>
+		<!--[if lt IE 7]>
+			<p class="chromeframe">Você está usando uma versão <strong>não compatível</strong> de navegador. Por favor, <a href="http://browsehappy.com/">atualize seu navegador</a> ou <a href="http://www.google.com/chromeframe/?redirect=true">ative o Google Chrome Frame</a> para melhorar sua experiência.</p>
+		<![endif]-->
+
+		<%= render partial: 'application/menu' %>
+
 		<%= yield %>
 
 		<%= javascript_include_tag "application" %>
