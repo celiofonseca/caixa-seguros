@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+
+function postForm()
+{
+	if(window.opener == null || window.opener.closed || !window.opener.ResultHandler)
+	{
+		var str = "An Error Has Occurred."
+		document.getElementById("divResult").innerHTML = str;
+		return;
+	}
+
+	var resultObj = window.opener.ResultHandler.getResult();
+	
+	var strProtocol = resultObj.assessmentURI.substring(0,6);
+	var isMailTo = strProtocol.toLowerCase()=="mailto";
+	var strEnctype = (isMailTo)?' enctype="text/plain"':'';
+	var strURL = (isMailTo) ? resultObj.assessmentURI+'?subject=Test Result of ' + resultObj.studentName : resultObj.assessmentURI;
+	var score = (resultObj.score != '') ? resultObj.score+'%' : '';
+	
+	var str = '<form name="form1" method="post" action="' + strURL + '"'+strEnctype+'>' +
+		'  <table width="50%"border="0" cellspacing="5" cellpadding="0">' +
+		'    <tr><td></td></tr>' +
+		'    <tr><td><input type="hidden" name="LessonType" value="sim"></td></tr>' +
+		'    <tr><td><input type="hidden" name="LessonName" value="'+ resultObj.lessonName +'"></td></tr>' +
+		'    <tr><td><input type="hidden" name="StudentName" value="'+ resultObj.studentName + '"></td></tr>' +
+		'    <tr><td><input type="hidden" name="TotalInteractions" value="'+ resultObj.totalToInclude +'"></td></tr>' +
+		'    <tr><td><input type="hidden" name="TotalIncorrect" value="'+ resultObj.totalIncorrect +'"></td></tr>' +
+		'    <tr><td><input type="hidden" name="Score" value="'+ score +'"></td></tr>' +
+		'    <tr><td><input type="hidden" name="Status" value="'+ resultObj.status +'"></td></tr>' +
+		'    <tr><td><input type="hidden" name="ListOfIncorrect" value="'+ resultObj.incNumberList +'"></td></tr>' +
+		'  </table>' +
+		'</form>';
+
+	document.getElementById("divResult").innerHTML = str;
+	document.forms[0].submit();
+
+	if(window.opener.quit)
+	{
+		window.opener.quit();
+	}
+	
+	if(isMailTo)
+	{
+		window.close();
+	}
+}
+
+</script>
+
+</head>
+
+<body onload="postForm();">
+
+<div id="divResult"></div>
+
+</body>
+</html>
