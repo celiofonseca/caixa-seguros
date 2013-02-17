@@ -1,2 +1,2 @@
 # Ignore videos for testing
-/public/videos
+/video/*
