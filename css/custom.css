@@ -8,6 +8,17 @@ body{
   background-image: linear-gradient(bottom, #eff5f7 0%, #b5cbd5 100%); /* gradient overlay */
 }
 
+.lt-ie9 body{
+  background-image: url("../img/bgfundo.png");
+  background-repeat: repeat-x;
+  background-color: #d6e7ec;
+}
+
+.lt-ie9  {
+  background-image: url("../img/bgmenu.png");
+  background-repeat: repeat-x;
+}
+
 .fundo_cidade {
   background: url("../img/fundo_cidade.gif") center no-repeat;
 }
