@@ -1,0 +1,495 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Seguro Auto</title>
+<script type="text/javascript" src="conf/conf.js"></script>
+<script type="text/javascript" src="assets/flashcheck.js"></script>
+<script type="text/javascript" src="assets/SCOPlayerWrapper.js"></script>
+<script type="text/javascript" src="assets/lmsapi.js"></script>
+<script type="text/javascript" src="assets/objcookie.js"></script>
+
+<script type="text/javascript">
+var __is_uPerform_Sim_Index__ = true;
+var API;
+var srch = top.location.search.substring(1);
+var username;
+var cName = 'StudentName';
+var embedded = false;
+
+openWindow=function(url_name,window_name,w,h,options)
+{
+	if (options === null) { options=""; }
+	winopts = "toolbar=" + (options.indexOf("toolbar") == -1 ? "no," : "yes,") +
+	"location="  + (options.indexOf("location") == -1 ? "no," : "yes,") +
+	"menubar=" + (options.indexOf("menubar") == -1 ? "no," : "yes,") +
+	"scrollbars=" + (options.indexOf("scrollbars") == -1 ? "no," : "yes,") +
+	"status=" + (options.indexOf("status") == -1 ? "no," : "yes,") +
+	"resizable=" + (options.indexOf("resizable") == -1 ? "no," : "yes,") +
+	"copyhistory=" + (options.indexOf("copyhistory") == -1 ? "no," : "yes,") +
+	"width=" + w + ",height=" + h;
+	return window.open(url_name,window_name,winopts);
+}
+
+launchContent=function(url)
+{
+	var winName = (reuseExistingWindow) ? 'simWindow' : 'simWindow_'+simAPIName;
+	openWindow(url,winName,simWidth,simHeight,'status,resizable');
+}
+
+$=function(id)
+{
+	var el=document.getElementById(id);
+	return el;
+}
+
+show=function(id)
+{
+	setStyleById(id,'display','block');
+}
+
+hide=function(id)
+{
+	setStyleById(id,'display','none');
+}
+
+setStyleById=function(id,attr,val)
+{
+	$(id).style[attr]=val;
+}
+
+save_username=function()
+{
+	var username_field = $('username');
+	if(username_field.value != '')
+	{
+		var c = new Cookie(document,cName,730,'/');
+		c["username"] = username_field.value;
+		c.store();
+
+		if(c["username"] && (c["username"].length > 0))
+		{
+			username = username_field.value;
+			show('current_username_container');
+			hide('username_form');
+			$('current_username').innerHTML = c["username"];
+		}
+	}
+}
+
+clear_username=function()
+{
+	var c = new Cookie(document,cName,730,'/');
+	c.remove();
+	$('username').value = username;
+	username = null;
+
+	show('username_form');
+	$('username').focus();
+	$('username').select();
+	$('current_username').innerHTML = "";
+	hide('current_username_container');
+}
+
+window.onload=function()
+{
+	if(srch.indexOf("embedded=true") > -1)
+	{
+		embedded = true;
+		apiVer = "SCORM1.2";
+	}
+	else
+	{
+		switch(apiVer)
+		{
+			case 'AICC':
+				if(document.location.search)
+				{
+					var aiccparms = document.location.search;
+					if(aiccparms.toLowerCase().indexOf('aicc_sid') >=0 && aiccparms.toLowerCase().indexOf('aicc_url') >=0)
+					{
+						var hasAiccParams = true;
+					}
+				}
+				else if(parent.document.location.search)
+				{
+					var aiccparms = parent.document.location.search;
+					if(aiccparms.toLowerCase().indexOf('aicc_sid') >=0 && aiccparms.toLowerCase().indexOf('aicc_url') >=0)
+					{
+						var hasAiccParams = true;
+					}
+				}
+				else
+				{
+					var hasAiccParams = false;
+				}
+
+			case 'SCORM1.2':
+				// 1.2 check
+				if(!embedded)
+				{
+					API = getAPI_12();
+					if (API != null)
+					{
+						if (_Debug)
+						{
+							alert('SCORM 1.2 API FOUND');
+						}
+						// Wrap 1.2 API with CheckedAPI to maintain initialization status
+						API = new CheckedAPI(API);
+					}
+				}
+					
+			case 'SCORM2004':
+				// 2004 check
+				api = getAPIHandle();
+				if(api != null)
+				{
+					if (_Debug)
+					{
+						alert('SCORM 2004 API FOUND');
+					}
+					// Create fake wrapper API to map 1.2 calls to 2004
+					API = new APIObject();
+				}
+		}
+	}
+
+	if(API && hasFlash)
+	{
+		API.LMSInitialize('');
+		var lesson_status = API.LMSGetValue('cmi.core.lesson_status');
+		if (lesson_status != null && lesson_status != '' && lesson_status.charAt(0).toLowerCase() == 'n')
+		{
+			API.LMSSetValue('cmi.core.lesson_status','incomplete');
+			API.LMSCommit('');
+		}
+	}
+
+	if(!embedded)
+	{
+		if(!API && !hasAiccParams && displayUsernamePrompt)
+		{
+			show('username_container');
+
+			var c = new Cookie(document,cName,730,'/');
+			c.load();
+
+			if(c["username"] && (c["username"].length > 0))
+			{
+				username = c["username"];
+				show('current_username_container');
+				hide('username_form');
+				$('current_username').innerHTML = c["username"];
+			}
+			else
+			{
+				$('username').focus();
+			}
+		}
+	}
+};
+
+</script>
+
+<style type="text/css">
+body
+{
+background-color: #E8E6E1;
+margin: 10px auto;
+text-align: center;
+}
+
+a:link, a:active, a:visited
+{
+font-family: Calibri, Verdana, Arial, Helvetica;
+font-size: 12px;
+color: #6284C1;
+text-decoration: none;
+}
+a:hover
+{
+font-family: Calibri, Verdana, Arial, Helvetica;
+font-size: 12px;
+color: #003366;
+text-decoration: underline;
+}
+
+li, ul
+{
+list-style-image: url(images/list.gif);
+}
+
+h1
+{
+font-family: Calibri, Verdana, Arial, Helvetica;
+font-size: 20px;
+font-weight: normal;
+color: #FFFFFF;
+}
+
+h2
+{
+font-family: Calibri, Verdana, Arial, Helvetica;
+font-size: 14px;
+font-weight: bold;
+color: #FFFFFF;
+}
+
+p
+{
+font-family: Calibri, Verdana, Arial, Helvetica;
+font-size: 12px;
+color: #003366;
+}
+
+.footerText,
+.footerText a:link,
+.footerText a:active,
+.footerText a:visited
+{
+font-family: Calibri;
+font-size: 11px;
+}
+
+.footer
+{
+margin:10px 0 5px 0;
+}
+
+.banner
+{
+background-color: #8fc7c7;
+border-style: solid;
+border-width: 0;
+border-color: #000000;
+}
+
+.infobox
+{
+background-color: #F1F0ED;
+}
+
+.infoboxText
+{
+font-family: Calibri, Verdana, Arial, Helvetica;
+font-size: 12px;
+color: black;
+}
+
+   #TableAuto
+{
+
+}
+#TableStd 
+{
+
+}
+#TableSelftest
+{
+
+}
+#TableAssessment
+{
+
+}
+
+#rowLessonName
+{
+
+}
+#TableDesc
+{
+
+}
+#RowAuthor
+{
+
+}
+#RowPubDate
+{
+
+}
+#RowCopyright
+{
+
+}
+#audioOption
+{
+display:none
+}
+#username_container
+{
+	margin:1px 0 5px 0;
+	padding:2px 4px 2px 4px;
+	background:#86A4D3;
+	display:none;
+	vertical-align:middle;
+}
+
+#username_container form
+{
+	margin:0;
+	padding:0;
+}
+
+#username_container p
+{
+	font-weight:bold;
+	color:#fff;
+	margin:2px 0 2px 0;
+	padding:0;
+	vertical-align:middle;
+}
+
+#username_container input
+{
+	vertical-align:middle;
+	border:0;
+}
+
+#username_container a img
+{
+	margin:0;
+	padding:0;
+	vertical-align:middle;
+	border:0;
+}
+
+#current_username
+{
+	font-size:16px;
+	vertical-align:middle;
+}
+
+#current_username_container
+{
+	display:none;
+}
+
+div#container
+{
+	width:480px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table#root_table
+{
+	text-align: left;
+}
+body,td,th {
+	font-family: calibri;
+}
+.style2 {font-family: calibri}
+</style>
+
+</head>
+<body>
+
+<div id="container">
+	<table id="root_table" border="0" cellpadding="0" cellspacing="0" width="389">
+		<tr style="height: 20px">
+			<td style="width: 20px; background-image: url(images/ui_top_left.gif); background-repeat: repeat;"></td>
+			<td style="height: 20px; width: 349px; background-image: url(images/ui_top.gif);background-repeat: repeat-x"></td>
+			<td style="width: 20px; background-image: url(images/ui_top_right.gif); background-repeat: no-repeat"></td>
+		</tr>
+		<tr>
+			<td style="width: 20px; background-image: url(images/ui_left.gif)"><img src="images/ui_left.gif" alt="" /></td>
+			<td>
+				<table border="0" cellpadding="0" cellspacing="0" width="349">
+					<tr>
+						<td style="background-image: url(images/ui_bkgd.png); height:252px;">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tr id="rowLessonName" valign="bottom">
+									<td align="right">
+										<div style="height: 47px; position: relative; vertical-align: bottom; overflow: hidden; text-overflow: ellipsis; font-weight: bold; font-size: 14pt; color: #0064a0; font-family: Calibri, Verdana, Arial, Helvetica; ">
+											<div style="max-height: 47px; overflow: hidden; position: absolute; bottom: 0px; width: 100%; left:0px; text-align:right;" title="Seguro Auto">Seguro Auto&nbsp;&nbsp;</div>
+										</div>
+										<div style="height:13px;"><img src="images/ui_line.png" width="430px" height="1px" valign="bottom"/></div>
+									 </td>
+								</tr>
+							</table>
+							<table width="429" height="180px">
+								<tr>
+									<td align="right" valign="top">
+										<table width="90%" cellpadding="2px" cellspacing="2px">
+											<tr id="TableAuto">
+												<td align="right" style="height: 18px"><a href="#" class="style2" onClick="launchContent('sim_auto_playback.htm');return false;">Tutorial do playback autom&#225;tico</a></td>
+											</tr>
+											<tr id="TableAssessment">
+												<td align="right" style="height: 18px"><a href="#" class="style2" onClick="launchContent('sim_assessment.htm');return false;">Tutorial da avalia&#231;&#227;o</a></td>
+											</tr>
+											<tr id="TableSelftest">
+												<td align="right" style="height: 18px"><a href="#" class="style2" onClick="launchContent('sim_self_test.htm');return false;">Tutorial do auto-teste</a></td>
+											</tr>
+											<tr id="TableStd">
+												<td align="right" style="height: 18px"><a href="#" class="style2" onClick="launchContent('sim_standard.htm');return false;">Tutorial padr&#227;o</a></td>
+											</tr>                                                    
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div id="username_container">
+								<div id="username_form">
+									<form method="post" onsubmit="return false;">
+										<p>Digite um nome de usuário para os resultados do teste:</p>
+										<p><input type="text" size="40" id="username" /> <a href="#" onclick="save_username();return false;"><img src="assets/go_blue.gif" width="16" height="16" alt="" /></a></p>
+									</form>
+								</div>
+								<div id="current_username_container">
+									<p><a href="#" class="remove" onclick="clear_username();return false;"><img src="assets/del_blue.gif" width="16" height="16" alt="" /></a> <span id="current_username"></span></p>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table border="0" cellpadding="4" cellspacing="0" id="TableDesc">
+								<tr>
+									<td valign="top"><b><span class="infoboxText">Descri&#231;&#227;o</span></b></td>
+								</tr>
+								<tr>
+									<td valign="top"><span class="infoboxText">Seguro Auto</span></td>
+								</tr>
+							</table>
+							<div style="height:10px;">&nbsp;</div>
+							<table cellpadding="4" cellspacing="0" border="0">
+								<tr id="RowAuthor">
+									<td><b><span class="footerText">Criado por</span></b></td>
+									<td><span class="footerText">ter83124</span></td>
+								</tr>
+								<tr id="RowPubDate">
+									<td><b><span class="footerText">Data da publica&#231;&#227;o</span></b></td>
+									<td><span class="footerText">Wednesday, November 07, 2012</span></td>
+								</tr>
+								<tr id="RowCopyright">
+									<td><b><span class="footerText">Direitos autorais</span></b></td>
+									<td><span class="footerText"> </span></td>
+								</tr>
+								<tr>
+									<td colspan=2>
+										<div class="footer"><p><span class="footerText">Se tiver dificuldades para visualizar esta simulação, abra o <a  href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html" target="settingsWindow">painel Global&nbsp;Security&nbsp;Settings&nbsp; do Adobe&nbsp;Flash&nbsp;Player&nbsp; </a> e selecione a opção <b>Always&nbsp;allow</b>.</span></p></div>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td style="width: 20px; background-image: url(images/ui_right.gif)"><img src="images/ui_right.gif" alt="" /></td>
+		</tr>
+		<tr>
+			<td style="height: 20px; width: 20px; background-image: url(images/ui_bottom_left.gif);background-repeat: no-repeat"></td>
+			<td style="height: 20px; width: 349px; background-image: url(images/ui_bottom.gif);background-repeat: repeat-x"></td>
+			<td style="height: 20px; width: 20px; background-image: url(images/ui_bottom_right.gif);background-repeat: no-repeat"></td>
+		</tr>
+	</table>
+</div>
+
+</body>
+</html>

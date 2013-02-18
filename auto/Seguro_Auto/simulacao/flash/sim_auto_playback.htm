@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>Seguro Auto</title>
+<script type="text/javascript">var mode = 0;</script>
+
+<!-- Configuration -->
+<script type="text/javascript" src="conf/lang.js"></script>
+<script type="text/javascript" src="conf/conf.js"></script>
+
+<!-- AICC support -->
+<script type="text/javascript" src="assets/swfobject.js"></script>
+<script type="text/javascript" src="assets/jsaicc.js"></script>
+<script type="text/javascript" src="assets/aiccsupport.js"></script>
+<script type="text/javascript" src="assets/aiccapi.js"></script>
+
+<!-- General/Common -->
+<script type="text/javascript" src="assets/json.js"></script>
+<script type="text/javascript" src="assets/flashcheck.js"></script>
+
+<!-- SCORM support -->
+<script type="text/javascript" src="assets/SCOPlayerWrapper.js"></script>
+<script type="text/javascript" src="assets/SCOFunctions.js"></script>
+<script type="text/javascript" src="assets/lmsapi.js"></script>
+<script type="text/javascript" src="assets/objcookie.js"></script>
+<script type="text/javascript" src="assets/flashlmsadapter.js"></script>
+
+<!-- Event handler support -->
+<script type="text/javascript" src="assets/handlers/rightclick.js"></script>
+<script type="text/javascript" src="assets/handlers/key.js"></script>
+<script type="text/javascript" src="assets/handlers/mousewheel.js"></script>
+<script type="text/javascript" src="assets/handlers/result.js"></script>
+<script type="text/javascript" src="assets/handlers/browser.js"></script>
+
+<!-- Core -->
+<script type="text/javascript" src="assets/core.js"></script>
+
+<style type="text/css">
+body,html
+{
+	height:100%;
+}
+body
+{
+	width:100%;
+	margin:0;
+	padding:0;
+	background-color:#fff;
+	overflow:hidden;
+}
+object
+{
+	outline:none;
+}
+#flashContent
+{
+	z-index:1;
+	position:absolute;
+	top:0px;
+	left:0px;
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+#noFlashContent
+{
+	display:none;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family:arial;
+	margin:20px auto;
+	width:700px;
+	color:#000;
+	background:url(assets/noflash_bg.gif) repeat-x;
+	padding:10px;
+}
+p
+{
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	text-align:left;
+	line-height:20px;
+}
+</style>
+
+</head>
+<body onhelp="return false;">
+
+<div id="flashContent"></div>
+
+<div id="noFlashContent">
+	<img src="assets/noflash.gif" width="100" height="100" border="0" alt="" title="No Flash">
+	<p>It appears you do not have the proper version of the Flash Plugin installed to view this content.  <a href="http://www.adobe.com/go/getflash/">Click here to install the plugin.</a> For help on installing the Flash plugin, contact your system administrator.</p>
+	<p>
+	<strong>Current Installed Version:</strong> <script type="text/javascript">document.write(installedVersion);</script><br>
+	<strong>Required Version:</strong> <script type="text/javascript">document.write(pluginVer);</script> +
+	</p>
+</div>
+
+<!-- Begin AICC support -->
+<div id="aiccclient"></div>
+<div id="aiccserver"></div>
+<iframe style="display:none" name="aiccinit" id="aiccinit" src="blank.htm"></iframe>
+<form name="ensureExit" action="" method="POST" target="aiccinit" style="display:none">
+	<input type="hidden" name="command" value="exitau" />
+	<input type="hidden" name="version" value="2.0" />
+	<input type="hidden" name="session_id" value="" />
+</form>
+<!-- End AICC support -->
+
+<script type="text/javascript">
+if(hasFlash)
+{
+	init();
+}
+else
+{
+	noFlash();
+}
+</script>
+
+</body>
+</html>

@@ -3,7 +3,9 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    <Waldemar Osmsla> -- <designer> -- <@osmala>
+    <Célio Fonseca Latorraca> -- <Developer> -- <>
+    <Mateus Rocha> -- <designer> -- <>
 
 # THANKS
 

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<manifest identifier="manifest-a8be8018a" version="1.1" xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2" xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2  imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+<organizations default="org-a8be8018a">
+	<organization identifier="org-a8be8018a">
+		<title>Seguro Auto</title>
+		<item identifier="SCO" identifierref="SCO1" isvisible="true">
+			<title>Seguro Auto</title>
+			<adlcp:masteryscore>65</adlcp:masteryscore>
+		</item>
+	</organization>
+</organizations>
+<resources>
+	<resource identifier="SCO1" type="webcontent" adlcp:scormtype="sco" href="index.htm">
+		<metadata>
+			<schema>ADL SCORM</schema>
+			<schemaversion>1.2</schemaversion>
+			<adlcp:location>sco01.xml</adlcp:location>
+		</metadata>
+       <file href="adlcp_rootv1p2.xsd" />
+       <file href="blank.htm" />
+       <file href="imscp_rootv1p1p2.xsd" />
+       <file href="imsmanifest.xml" />
+       <file href="imsmanifest.xsl" />
+       <file href="imsmd_rootv1p2p1.xsd" />
+       <file href="ims_xml.xsd" />
+       <file href="index.htm" />
+       <file href="result.asp" />
+       <file href="result.htm" />
+       <file href="result.php" />
+       <file href="sco01.xml" />
+       <file href="sco01.xsl" />
+       <file href="sim_assessment.htm" />
+       <file href="sim_auto_playback.htm" />
+       <file href="sim_self_test.htm" />
+       <file href="sim_standard.htm" />
+
+	</resource>
+</resources>
+</manifest>

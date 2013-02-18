@@ -30,6 +30,11 @@ body{
   height: 879px;
 }
 
+.fundo_alerta_ios {
+  background: none;
+  min-height: 400px;
+}
+
 /* Media Querys */
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -85,4 +90,11 @@ and (min-width : 1824px) {
 only screen and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (min-device-pixel-ratio : 1.5) {
 /* Styles */
+}
+
+@media (min-width: 1200px) {
+
+  .fundo_mao {
+  background: url("../img/carro_mao.png") left no-repeat;
+  min-height: 400px;
 }
