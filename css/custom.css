@@ -11,13 +11,30 @@ body{
   padding-bottom: 40px;
 }
 
+.lt-ie9 body{
+  background-image: url("../img/bgfundo.png");
+  background-repeat: repeat-x;
+  background-color: #d6e7ec;
+}
+
+.lt-ie9  {
+  background-image: url("../img/bgmenu.png");
+  background-repeat: repeat-x;
+}
+
+.lt-ie9 .fundo_footer{
+  background-image: url("../img/footer_azul.png");
+  background-repeat: repeat-x;
+}
+
 .fundo_cidade {
   background: url("../img/fundo_cidade.gif") center no-repeat;
 }
 
 .fundo_mao {
-  background: url("../img/carro_mao.png") right no-repeat;
-  min-height: 400px;
+  background: url("../img/carro_mao.png") no-repeat right 10px;
+  min-height: 200px;
+  height: 256px;
 }
 
 .fundo_mao_peq {
@@ -29,78 +46,94 @@ body{
   color: black!important;
 }
 
-.correcao_tamanho {
-  height: 879px;
-}
-
 .fundo_alerta_ios {
   background: none;
   min-height: 400px;
 }
 
+.fundo_footer {
+    height: 178px;
+    background: url("../img/footer_azul.png") center no-repeat;
+
+}
+
+.container_borda {
+	border: 10px solid white;
+}
+
+.logo_caixa {
+width: 172px;
+height: 71px;
+float: right;
+background: url("../img/logo_caixa.png") right no-repeat;
+position: relative;
+top: 80px;
+right: 50px;
+}
+
+.header {
+background: url("../img/header_azul.png") no-repeat center top;
+height: 135px;
+text-align: center;
+padding-top: 20px;
+color: #cddbe3;
+font-size: 18px;
+}
+
+.sem_fundo {
+  background: none!important;
+}
+
+.objecoes_padding {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+
 /* Media Querys */
-
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
-/* Styles */
-
+@media (max-width: 480px) {
+  .logo_caixa {
+  top: 100px;
+  right: 5px;
+  }
+  .header {
+  	padding-top: 0px;
+  }
+  
+  .header h1{
+  	font-size: 26px;
+	line-height: 30px;
+  }
+  
+  .body {
+  	padding: 0px!important;
+  }
+  
+  .fundo_mao_peq{
+  	background-position: -40px;
+  }
+  
 }
-/* Smartphones (landscape) ----------- */
-@media only screen
-and (min-width : 321px) {
-/* Styles */
-
-}
-/* Smartphones (portrait) ----------- */
-@media only screen
-and (max-width : 320px) {
-/* Styles */
-}
-/* iPads (portrait and landscape) ----------- */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px) {
-/* Styles */
-}
-/* iPads (landscape) ----------- */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : landscape) {
-/* Styles */
-}
-/* iPads (portrait) ----------- */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : portrait) {
-/* Styles */
-}
-/* Desktops and laptops ----------- */
-@media only screen
-and (min-width : 1224px) {
-/* Styles */
-}
-/* Large screens ----------- */
-@media only screen
-and (min-width : 1824px) {
-/* Styles */
-}
-/* iPhone 4 ----------- */
-@media
-only screen and (-webkit-min-device-pixel-ratio : 1.5),
-only screen and (min-device-pixel-ratio : 1.5) {
-/* Styles */
+/* iPad */
+@media (min-width: 768px) and (max-width: 979px) {
+	.header h1{
+		font-size: 30px;
+		line-height: 30px;
+	}
 }
 
 @media (min-width: 1200px) {
 
   .fundo_mao {
-  background: url("../img/carro_mao.png") left no-repeat;
-  min-height: 400px;
+    background: url("../img/carro_mao.png") no-repeat left 11px;
+    min-height: 250px;
+  }
+
+  .logo_caixa {
+    right: 80px;
+  }
 }
+
 
 /* custom player skin */
 .flowplayer { width: 80%; background-color: #222; background-size: cover;}
@@ -108,4 +141,3 @@ only screen and (min-device-pixel-ratio : 1.5) {
 .flowplayer .fp-timeline { background-color: rgba(0, 0, 0, 0.5)}
 .flowplayer .fp-progress { background-color: rgba(219, 0, 0, 1)}
 .flowplayer .fp-buffer { background-color: rgba(249, 249, 249, 1)}
-
