@@ -6,6 +6,9 @@ body{
   background-image: -o-linear-gradient(bottom, #eff5f7 0%, #b5cbd5 100%); /* gradient overlay */
   background-image: -webkit-linear-gradient(bottom, #eff5f7 0%, #b5cbd5 100%); /* gradient overlay */
   background-image: linear-gradient(bottom, #eff5f7 0%, #b5cbd5 100%); /* gradient overlay */
+
+  padding-top: 60px;
+  padding-bottom: 40px;
 }
 
 .fundo_cidade {
@@ -98,3 +101,11 @@ only screen and (min-device-pixel-ratio : 1.5) {
   background: url("../img/carro_mao.png") left no-repeat;
   min-height: 400px;
 }
+
+/* custom player skin */
+.flowplayer { width: 80%; background-color: #222; background-size: cover;}
+.flowplayer .fp-controls { background-color: rgba(0, 0, 0, 0.4)}
+.flowplayer .fp-timeline { background-color: rgba(0, 0, 0, 0.5)}
+.flowplayer .fp-progress { background-color: rgba(219, 0, 0, 1)}
+.flowplayer .fp-buffer { background-color: rgba(249, 249, 249, 1)}
+
