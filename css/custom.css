@@ -77,8 +77,14 @@ color: #cddbe3;
 font-size: 18px;
 }
 
+.sem_fundo {
+  background: none!important;
+}
 
-
+.objecoes_padding {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 
 
 /* Media Querys */
