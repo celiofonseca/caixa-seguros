@@ -69,3 +69,11 @@ body {
     margin: auto;
     width: 960px;
 }
+
+
+/* custom player skin */
+.flowplayer { width: 80%; background-color: #222; background-size: cover;}
+.flowplayer .fp-controls { background-color: rgba(0, 0, 0, 0.4)}
+.flowplayer .fp-timeline { background-color: rgba(0, 0, 0, 0.5)}
+.flowplayer .fp-progress { background-color: rgba(219, 0, 0, 1)}
+.flowplayer .fp-buffer { background-color: rgba(249, 249, 249, 1)}
