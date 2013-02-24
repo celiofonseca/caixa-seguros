@@ -141,3 +141,64 @@ font-size: 18px;
 .flowplayer .fp-timeline { background-color: rgba(0, 0, 0, 0.5)}
 .flowplayer .fp-progress { background-color: rgba(219, 0, 0, 1)}
 .flowplayer .fp-buffer { background-color: rgba(249, 249, 249, 1)}
+
+/* IE6 */
+
+.lt-ie7 body {padding: 0;}
+.lt-ie7 .container {margin-top: 20px;}
+.lt-ie7 .navbar {
+  top: -20px;
+  position: relative;
+  line-height: 15px;
+
+}
+.lt-ie7 .navbar .nav {
+  width: 400px; 
+  height: 40px;
+}
+
+.lt-ie7 .navbar .nav li {
+  float: left; 
+  line-height: 35px; 
+  text-align: center; 
+}
+
+.lt-ie7 .navbar .nav li a {
+  line-height: 35px; 
+  height: 40px;
+  width: 100px;
+  display: block;
+  text-decoration: none;
+  color: #666;
+}
+.lt-ie7 .navbar .nav li.active a, .lt-ie7 .navbar .nav li a:hover {
+  color: #000;
+}
+
+.lt-ie7 .header {background-image: url("../img/header_azul.gif")}
+.lt-ie7 .fundo_mao {background-image: url("../img/carro_mao.gif")}
+.lt-ie7 .logo_caixa {background-image: url("../img/logo_caixa.jpg");}
+.lt-ie7 .fundo_footer {
+  background-image: url("../img/footer_azul.gif"); 
+  background-position: 0 15px;
+}
+
+
+.lt-ie7 .row-fluid .span6 {
+  width: 50%; 
+  text-align: center; 
+  margin: auto;
+}
+
+.lt-ie7 .icon-white {
+  background-image: url("../img/glyphicons-halflings-white.png"); 
+  width: 14px; 
+  height: 14px;
+  display: block; 
+  float: left; 
+  position: relative;
+  left: 120px;
+  top: 4px;
+}
+
+.lt-ie7 .span4 .icon-white{left: 50px;}
