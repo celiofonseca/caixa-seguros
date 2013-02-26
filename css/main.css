@@ -120,6 +120,13 @@ font-size: 18px;
 	}
 }
 
+@media (min-width: 980px) and (max-width: 1199px) {
+  body {
+    padding-top: 60px !important;
+  }
+
+}
+
 @media (min-width: 1200px) {
 
   .fundo_mao {
