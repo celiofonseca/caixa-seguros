@@ -12,6 +12,14 @@ body{
 
 /*body > .container {margin-top: 60px;}*/
 
+.alinha_titulo_menu h2{
+	padding-left: 210px;
+}
+
+.alinha_titulo_centro {
+	text-align: center;
+}
+
 .lt-ie9 body{
   background-image: url("../img/bgfundo.png");
   background-repeat: repeat-x;
