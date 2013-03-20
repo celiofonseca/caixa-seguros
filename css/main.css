@@ -52,6 +52,17 @@ body{
   min-height: 100px;
 }
 
+.fundo_mao_index {
+  background: url("../img/carro_mao_index.png") no-repeat right 10px;
+  min-height: 200px;
+  height: 256px;
+}
+
+.fundo_mao_peq_index {
+  background: url("../img/carro_mao_peq_index.png") left no-repeat;
+  min-height: 100px;
+}
+
 .btn-navbar {
   color: black!important;
 }
@@ -118,6 +129,10 @@ font-size: 18px;
   .fundo_mao_peq{
   	background-position: -40px;
   }
+
+    .fundo_mao_peq_index{
+    background-position: -40px;
+  }
   
 }
 /* iPad */
@@ -139,6 +154,11 @@ font-size: 18px;
 
   .fundo_mao {
     background: url("../img/carro_mao.png") no-repeat left 11px;
+    min-height: 250px;
+  }
+
+    .fundo_mao_index {
+    background: url("../img/carro_mao_index.png") no-repeat left 11px;
     min-height: 250px;
   }
 
